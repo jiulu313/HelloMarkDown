@@ -72,6 +72,7 @@
         this.changeSelectedText("***","***")
       },
 
+      //加下划线
       addUnderline() {
         this.changeSelectedText("<u>","</u>")
       },
@@ -88,7 +89,6 @@
             let result = str1 + startString + str2 + endString + str3
             t.value = result
             this.markString = t.value
-            return t.value.substring(t.selectionStart, t.selectionEnd);
           }
         }
       }
@@ -173,6 +173,7 @@
     height: 100%;
     display: flex;
     display: -webkit-flex;
+    background-color: #dfe9f1;
   }
 
   .md_textarea_content {
