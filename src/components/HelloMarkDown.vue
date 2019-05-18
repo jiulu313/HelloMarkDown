@@ -3,9 +3,9 @@
 
     <!--功能按钮区-->
     <div class="button_bar">
-      <span><B>B</B></span>
-      <span><B>U</B></span>
-      <span><B>I</B></span>
+      <span v-on:click="addBold"><B>B</B></span>
+      <span v-on:click="addUnderline"><B>U</B></span>
+      <span v-on:click="addItalic"><B>I</B></span>
     </div>
 
     <!--主要内容区-->
@@ -53,7 +53,40 @@
       }
     },
 
-    watch:{
+    methods: {
+      //加粗
+      addBold() {
+        this.changeSelectedText("**","**")
+      },
+
+      //斜体
+      addItalic() {
+        this.changeSelectedText("***","***")
+      },
+
+      addUnderline() {
+        this.changeSelectedText("<u>","</u>")
+      },
+
+      changeSelectedText(startString,endString){
+        let t = this.$refs.ref_md_edit
+        if (window.getSelection) {
+          if (t.selectionStart != undefined && t.selectionEnd != undefined) {
+
+            let str1 = t.value.substring(0, t.selectionStart)
+            let str2 = t.value.substring(t.selectionStart, t.selectionEnd)
+            let str3 = t.value.substring(t.selectionEnd)
+
+            let result = str1 + startString + str2 + endString + str3
+            t.value = result
+            this.markString = t.value
+            return t.value.substring(t.selectionStart, t.selectionEnd);
+          }
+        }
+      }
+    },
+
+    watch: {
 
       //监听markString变化
       markString: function (value) {
