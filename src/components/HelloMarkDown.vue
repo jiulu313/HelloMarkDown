@@ -31,6 +31,10 @@
   import marked from 'marked'     //解析mardown语法的库
   import hljs from 'highlight.js' //对代码进行语法高亮的库
 
+
+  import testData from '../testData'  //测试数据
+
+
   export default {
     name: "HelloMarkDown",
 
@@ -51,6 +55,10 @@
         markString: '',
         htmlString: '',
       }
+    },
+
+    mounted(){
+      this.markString = testData
     },
 
     methods: {
