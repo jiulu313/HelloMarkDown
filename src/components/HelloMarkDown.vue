@@ -19,9 +19,8 @@
 
       <!--解析成html区-->
       <div class="html_body">
-        {{htmlString}}
+        <p v-html="htmlString"></p>
       </div>
-
 
     </div>
 
@@ -29,8 +28,8 @@
 </template>
 
 <script>
-  import marked from 'marked'
-  import hljs from 'highlight.js'
+  import marked from 'marked'     //解析mardown语法的库
+  import hljs from 'highlight.js' //对代码进行语法高亮的库
 
   export default {
     name: "HelloMarkDown",
@@ -55,6 +54,8 @@
     },
 
     watch:{
+
+      //监听markString变化
       markString: function (value) {
         marked.setOptions({
           renderer: new marked.Renderer(),
@@ -70,7 +71,7 @@
         this.htmlString = marked(value)
       },
 
-
+      //监听htmlString并对其高亮
       htmlString: function (value) {
         this.$nextTick(() => {
           const codes = document.querySelectorAll(".html_body pre code");
@@ -82,14 +83,13 @@
           });
         });
       }
-
     }
-
 
   }
 </script>
 
 <style scoped>
+
   .md_root_content {
     display: flex;
     display: -webkit-flex;
